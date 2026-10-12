@@ -1,0 +1,52 @@
+spring:
+  application:
+    name: secondhand-electronics-trading
+  
+  # MySQL数据源配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/secondhand_electronics?useUnicode=true&characterEncoding=utf8&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: 3334520yangmi
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 300000
+      max-lifetime: 1200000
+  
+  jpa:
+    hibernate:
+      ddl-auto: update  # 保持原有数据
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+        dialect: org.hibernate.dialect.MySQLDialect
+  
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 10MB
+
+# JWT配置
+jwt:
+  secret: your-secret-key-change-this-in-production-at-least-256-bits-long-for-security
+  expiration: 86400000 # 24小时（毫秒）
+
+# 文件上传路径
+file:
+  upload-dir: ./uploads
+
+# 服务器配置
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+# 日志配置
+logging:
+  level:
+    com.secondhand.electronics: INFO
+    org.springframework.security: WARN
+    org.hibernate.SQL: WARN
